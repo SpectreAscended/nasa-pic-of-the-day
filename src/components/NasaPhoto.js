@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from './NavBar';
 
 const API_KEY = process.env.REACT_APP_NASA_KEY;
 
@@ -27,23 +28,26 @@ const NasaPhoto = () => {
 
   return (
     <>
-      {photoData.media_type === 'image' ? (
-        <img src={photoData.url} alt={photoData.title} />
-      ) : (
-        <iframe
-          title="space-video"
-          src={photoData.url}
-          frameBorder="0"
-          gesture="media"
-          allow="encrypted-media"
-          allowFullScreen
-          className="photo"
-        />
-      )}
+      <NavBar />
       <div>
-        <h1>{photoData.title}</h1>
-        <p>{photoData.date}</p>
-        <p>{photoData.explanation}</p>
+        {photoData.media_type === 'image' ? (
+          <img src={photoData.url} alt={photoData.title} />
+        ) : (
+          <iframe
+            title="space-video"
+            src={photoData.url}
+            frameBorder="0"
+            gesture="media"
+            allow="encrypted-media"
+            allowFullScreen
+            className="photo"
+          />
+        )}
+        <div>
+          <h1>{photoData.title}</h1>
+          <p>{photoData.date}</p>
+          <p>{photoData.explanation}</p>
+        </div>
       </div>
     </>
   );
